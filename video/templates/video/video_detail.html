@@ -1,0 +1,12 @@
+{% extends 'video/base.html' %}
+{% block content %}
+    <video width='400' controls>
+        <source src='../../media/{{ object.video }}' type='video/mp4'>
+        Twoja przeglądarka nie pozwala uruchomić tego filmu.
+    </video>
+
+    <h2>{{ object.title }}</h2>
+    <p>Autor: {{ video.author }}</p>
+    <p>Data publikacji: {{ video.created }}</p>
+    <p>Opis: {{ video.description }}</p>
+{% endblock %}
