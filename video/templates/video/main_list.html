@@ -2,11 +2,12 @@
 {% block content %}
     {% if videos %}
         {% for video in videos %}
-            <h2><a href="{% url 'video_detail' video.id %}">{{ video.title }}</a></h2>
+            <h2><a href="{% url 'video:detail' video.id %}">{{ video.title }}</a></h2>
             <p>Autor: {{ video.author }} Data publikacji: {{ video.created }}</p>
         {% endfor %}
 
     {% else %}
         <p>Nie ma jeszcze żadnych fimów na stronie</p>
     {% endif %}
+
 {% endblock %}
