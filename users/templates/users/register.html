@@ -1,0 +1,10 @@
+{% extends 'video/base.html' %}
+{% block title %} - Rejestracja{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Stwórz konto</button>
+    </form>
+
+{% endblock %}

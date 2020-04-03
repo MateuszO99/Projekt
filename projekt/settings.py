@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'video.apps.VideoConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'projekt',
         'USER': 'postgres',
-        'PASSWORD': '*******',
+        'PASSWORD': 'ZAQ!2wsx',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -126,3 +127,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = 'video:main_list'
+LOGIN_URL = 'users:login'

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Video(models.Model):
@@ -15,3 +16,6 @@ class Video(models.Model):
 
     class Meta:
         ordering = ('-created',)
+
+    def get_absolute_url(self):
+        return reverse('video:detail', kwargs={'pk': self.pk})

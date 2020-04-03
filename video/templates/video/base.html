@@ -6,10 +6,22 @@
 </head>
 <body>
     <nav>
-        <div><a href="{% url 'main_list' %}">Strona główna</a></div>
-        <div><a href="#">Logowanie</a></div>
-        <div><a href="#">Rejestracja</a></div>
+        <div><a href="{% url 'video:main_list' %}">Strona główna</a></div>
+        {% if user.is_authenticated %}
+            <div><a href="{% url 'video:create' %}">Dodaj nowy film</a></div>
+            <div><a href="{% url 'users:profile' %}">Mój profil</a></div>
+            <div><a href="{% url 'users:logout' %}">Wyloguj się</a></div>
+        {% else %}
+            <div><a href="{% url 'users:register' %}">Rejestracja</a></div>
+            <div><a href="{% url 'users:login' %}">Logowanie</a></div>
+        {% endif %}
     </nav>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock %}
