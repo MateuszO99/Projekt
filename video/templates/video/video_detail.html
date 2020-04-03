@@ -1,4 +1,5 @@
 {% extends 'video/base.html' %}
+{% block title %} - {{ object.title }}{% endblock %}
 {% block content %}
     <video width='400' controls>
         <source src='../../media/{{ object.video }}' type='video/mp4'>
@@ -9,4 +10,12 @@
     <p>Autor: {{ video.author }}</p>
     <p>Data publikacji: {{ video.created }}</p>
     <p>Opis: {{ video.description }}</p>
+
+    {% if object.author.id == request.user.id %}
+        <p>
+            <a href="{% url 'video:update' object.id %}">Edytuj</a>
+            <a href="{% url 'video:delete' object.id %}">Usuń</a>
+        </p>
+    {% endif %}
+
 {% endblock %}

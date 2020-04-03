@@ -1,0 +1,10 @@
+{% extends 'video/base.html' %}
+{% block title %} - Logowanie{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Zaloguj się</button>
+    </form>
+
+{% endblock %}

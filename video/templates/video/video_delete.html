@@ -1,0 +1,10 @@
+{% extends 'video/base.html' %}
+{% block content %}
+    <h2>Czy na pewno chcesz usunąć ten film?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button>Tak</button>
+    </form>
+    <a href="{% url 'video:detail' object.id %}">Nie</a>
+
+{% endblock %}

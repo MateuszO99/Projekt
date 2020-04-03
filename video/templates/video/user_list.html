@@ -1,15 +1,16 @@
 {% extends 'video/base.html' %}
 {% block content %}
     {% if videos %}
+        <h1>Filmy wstawione przez {{ view.kwargs.username }}</h1>
         {% for video in videos %}
             <h2><a href="{% url 'video:detail' video.id %}">{{ video.title }}</a></h2>
-            <p>Autor: <a href="{% url 'video:user-list' video.author.username %}">{{ video.author }}</a> Data publikacji: {{ video.created }}</p>
+            <p>Autor: {{ video.author }} Data publikacji: {{ video.created }}</p>
         {% endfor %}
 
         {% include 'video/pagination.html' with page=page_obj %}
 
     {% else %}
-        <p>Nie ma jeszcze żadnych fimów na stronie</p>
+        <h1>Użytkownik {{ view.kwargs.username }} nie wstawił jeszcze żadnych filmów</h1>
     {% endif %}
 
 {% endblock %}

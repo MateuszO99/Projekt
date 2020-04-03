@@ -1,0 +1,19 @@
+{% extends 'video/base.html' %}
+{% block title %} - Komentarze{% endblock %}
+{% block content %}
+
+    <h1>Komentarze</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Dodaj komentarz</button>
+    </form>
+
+    {% for comment in comments %}
+        <p>{{ comment.username }}</p>
+        <p>{{ comment.content }}</p>
+        <p>Data dodania: {{ comment.created }}</p>
+    {% endfor %}
+
+{% endblock %}
