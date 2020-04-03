@@ -32,3 +32,21 @@ Dodawanie filmu:
 ![](img/dodawanie.PNG)  
 Usuwanie filmu:  
 ![](img/usuwanie.PNG)  
+
+# Raport III  
+
+Dodałem użytkownikowi możliwość edytowania opisu pod filmem i jego nazwę, możliwość sprawdzenia jakie filmy dodał użytkownik, możliwość dodawania i czytania komentarzy pod filmami dla zalogowanych użytkowników oraz dodałem opcję, że przy dużej ilości filmów główna strona dzieli się na pod strony. Połączyłem bootstrapa ze stroną i wystylizowałem pasek nawigacyjny.  
+Do następnego raportu planuję skończyć stylizowanie strony.  
+
+Pasek nawigacji i podział na podstorny:  
+![](img/sg.PNG)  
+Pasek nawigacji po zmniejszeniu strony:  
+![](img/zwiniety_pasek.PNG)  
+Rozwinięt pasek nawigacji po zmniejszeniu strony:  
+![](img/rozw_pasek.PNG)  
+Pod strona z filmami wybranego użytkownika:  
+![](img/zmiana.PNG)  
+Edytowanie opisu i tytułu filmu:  
+![](img/edytowanie_opisu.PNG)  
+Dodawanie komentarzy:  
+![](img/komentarze.PNG)  
