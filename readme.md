@@ -13,4 +13,22 @@ Do następnego raportu planuję dodać możliwość rejestracji, logowania, edyt
 Strona główna:  
 ![](img/img1.PNG)  
 Podstrona filmu:  
-![](img/img2.PNG)
+![](img/img2.PNG)  
+
+# Raport II
+
+Dodałem możliwość rejestracji oraz logowania się użytkownika. Użytkownik może edytować swój profil (zmieniać zdjęcie profilowe, swoją nazwę, maila oraz hasło). Zalogowany użytkownik może dodawać filmy do strony oraz je usuwać (może usunąć tylko te filmy, które sam umieścił).  
+Do następnego raportu planuję dodać użytkownikowi możliwość edytowania opisu pod filmem, możliwość zobaczenia jakie filmy dodał dany użytkownik, sekcje komentarzy dla zalogowanych użytkowników oraz w przypadku dużej ilości filmów na głównej stronie podzielenie jej na podstrony. Zamierzam też dodać bootstrapa do strony i wystylizować pasek nawigacji.  
+
+Rejestracja:  
+![](img/rejestracja.PNG)  
+Logowanie:  
+![](img/logowanie.PNG)  
+Profil:  
+![](img/proifil.PNG)  
+Zmiana hasła:  
+![](img/zmiana.PNG)  
+Dodawanie filmu:  
+![](img/dodawanie.PNG)  
+Usuwanie filmu:  
+![](img/usuwanie.PNG)  
