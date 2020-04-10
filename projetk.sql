@@ -399,6 +399,43 @@ ALTER SEQUENCE public.users_profile_id_seq OWNED BY public.users_profile.id;
 
 
 --
+-- Name: video_comment; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_comment (
+    id integer NOT NULL,
+    content text NOT NULL,
+    created timestamp with time zone NOT NULL,
+    username_id integer NOT NULL,
+    video_id integer NOT NULL
+);
+
+
+ALTER TABLE public.video_comment OWNER TO postgres;
+
+--
+-- Name: video_comment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_comment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_comment_id_seq OWNER TO postgres;
+
+--
+-- Name: video_comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_comment_id_seq OWNED BY public.video_comment.id;
+
+
+--
 -- Name: video_video; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -504,6 +541,13 @@ ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.users_profile ALTER COLUMN id SET DEFAULT nextval('public.users_profile_id_seq'::regclass);
+
+
+--
+-- Name: video_comment id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_comment ALTER COLUMN id SET DEFAULT nextval('public.video_comment_id_seq'::regclass);
 
 
 --
@@ -666,6 +710,14 @@ ALTER TABLE ONLY public.users_profile
 
 
 --
+-- Name: video_comment video_comment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_comment
+    ADD CONSTRAINT video_comment_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: video_video video_video_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -765,6 +817,20 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
+-- Name: video_comment_name_id_967a70ef; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_comment_name_id_967a70ef ON public.video_comment USING btree (username_id);
+
+
+--
+-- Name: video_comment_video_id_323b476e; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_comment_video_id_323b476e ON public.video_comment USING btree (video_id);
+
+
+--
 -- Name: video_video_author_id_7e3e31cd; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -849,6 +915,22 @@ ALTER TABLE ONLY public.django_admin_log
 
 ALTER TABLE ONLY public.users_profile
     ADD CONSTRAINT users_profile_user_id_2112e78d_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_comment video_comment_username_id_325c5dcb_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_comment
+    ADD CONSTRAINT video_comment_username_id_325c5dcb_fk_auth_user_id FOREIGN KEY (username_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_comment video_comment_video_id_323b476e_fk_video_video_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_comment
+    ADD CONSTRAINT video_comment_video_id_323b476e_fk_video_video_id FOREIGN KEY (video_id) REFERENCES public.video_video(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

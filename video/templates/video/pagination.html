@@ -1,0 +1,13 @@
+{% if is_paginated %}
+    {% if page.has_previous %}
+        <a class="pr-1" href="?page=1">Pierwsza</a>
+        <a class="pr-1" href="?page={{ page.previous_page_number }}">Poprzednia</a>
+    {% endif %}
+
+    Strona {{ page.number }} z {{ page.paginator.num_pages }}
+
+    {% if page.has_next %}
+        <a class="pl-1" href="?page={{ page.next_page_number }}">Następna</a>
+        <a class="pl-1" href="?page={{ page.paginator.num_pages }}">Ostatnia</a>
+    {% endif %}
+{% endif %}
