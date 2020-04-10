@@ -1,12 +1,35 @@
 {% extends 'video/base.html' %}
+{% block title %} - {{ object.title }}{% endblock %}
 {% block content %}
-    <video width='400' controls>
-        <source src='../../media/{{ object.video }}' type='video/mp4'>
-        Twoja przeglądarka nie pozwala uruchomić tego filmu.
-    </video>
+    <div class="text-center">
+        <video width='1080' class="video" controls>
+            <source src='../../media/{{ object.video }}' type='video/mp4'>
+            Twoja przeglądarka nie pozwala uruchomić tego filmu.
+        </video>
+    </div>
 
-    <h2>{{ object.title }}</h2>
-    <p>Autor: {{ video.author }}</p>
-    <p>Data publikacji: {{ video.created }}</p>
-    <p>Opis: {{ video.description }}</p>
+    <div class="pl-3">
+        <h1 class="pt-2">{{ object.title }}</h1>
+        <p>
+            <span class="font-weight-bold">Autor:</span>
+            <a href="{% url 'video:user-list' object.author.username %}">{{ object.author }}</a>
+        </p>
+        <p><span class="font-weight-bold">Data publikacji:</span> {{ object.created|date:'d b Y' }}</p>
+        <p><span class="font-weight-bold">Godzina wstawienia:</span> {{ object.created|date:'H:i' }}</p>
+        <p class="text-justify"><span class="font-weight-bold">Opis:</span> {{ object.description }}</p>
+
+        {% if object.author.id == request.user.id %}
+            <p>
+                <a href="{% url 'video:update' object.id %}" class="btn btn-primary">Edytuj</a>
+                <a href="{% url 'video:delete' object.id %}" class="btn btn-danger">Usuń</a>
+            </p>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'video:comments' object.id %}" class="btn btn-primary mb-4">Komentarze</a>
+        {% else %}
+            <a href="{% url 'users:login' %}">Zaloguj się, żeby przeglądać komentarze</a>
+        {% endif %}
+    </div>
+
 {% endblock %}

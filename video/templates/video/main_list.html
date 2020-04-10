@@ -1,12 +1,25 @@
 {% extends 'video/base.html' %}
 {% block content %}
+    <h1>Lista filmów:</h1>
     {% if videos %}
         {% for video in videos %}
-            <h2><a href="{% url 'video_detail' video.id %}">{{ video.title }}</a></h2>
-            <p>Autor: {{ video.author }} Data publikacji: {{ video.created }}</p>
+            <div class="post">
+                <h2><a href="{% url 'video:detail' video.id %}">{{ video.title }}</a></h2>
+                <p>
+                    Autor: <a href="{% url 'video:user-list' video.author.username %}">{{ video.author }}</a>
+                    &nbsp;&nbsp;
+                    Data publikacji: {{ video.created|date:'d b Y' }}
+                </p>
+                <hr class="light">
+            </div>
         {% endfor %}
+
+        <div class="text-center">
+            {% include 'video/pagination.html' with page=page_obj %}
+        </div>
 
     {% else %}
         <p>Nie ma jeszcze żadnych fimów na stronie</p>
     {% endif %}
+
 {% endblock %}
