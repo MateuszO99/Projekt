@@ -11,9 +11,9 @@ Do tej pory utworzyłem baza danych projektu w PostgreSQL. Stworzyłem główną
 Do następnego raportu planuję dodać możliwość rejestracji, logowania, edytowania profilu, dodawania przez zalogowanego użytkownika filmów oraz ich usuwanie.  
 
 Strona główna:  
-![](img/img.PNG)  
+![](img/img.png)  
 Podstrona filmu:  
-![](img/img2.PNG)  
+![](img/img2.png)  
 
 # Raport II
 
@@ -21,17 +21,17 @@ Dodałem możliwość rejestracji oraz logowania się użytkownika. Użytkownik 
 Do następnego raportu planuję dodać użytkownikowi możliwość edytowania opisu pod filmem, możliwość zobaczenia jakie filmy dodał dany użytkownik, sekcje komentarzy dla zalogowanych użytkowników oraz w przypadku dużej ilości filmów na głównej stronie podzielenie jej na podstrony. Zamierzam też dodać bootstrapa do strony i wystylizować pasek nawigacji.  
 
 Rejestracja:  
-![](img/rejestracja.PNG)  
+![](img/rejestracja.png)  
 Logowanie:  
-![](img/logowanie.PNG)  
+![](img/logowanie.png)  
 Profil:  
-![](img/proifil.PNG)  
+![](img/proifil.png)  
 Zmiana hasła:  
-![](img/zmiana.PNG)  
+![](img/zmiana.png)  
 Dodawanie filmu:  
-![](img/dodawanie.PNG)  
+![](img/dodawanie.png)  
 Usuwanie filmu:  
-![](img/usuwanie.PNG)  
+![](img/usuwanie.png)  
 
 # Raport III  
 
@@ -39,17 +39,17 @@ Dodałem użytkownikowi możliwość edytowania opisu pod filmem i jego nazwę, 
 Do następnego raportu planuję skończyć stylizowanie strony.  
 
 Pasek nawigacji i podział na podstorny:  
-![](img/sg.PNG)  
+![](img/sg.png)  
 Pasek nawigacji po zmniejszeniu strony:  
-![](img/zwiniety_pasek.PNG)  
+![](img/zwiniety_pasek.png)  
 Rozwinięt pasek nawigacji po zmniejszeniu strony:  
-![](img/rozw_pasek.PNG)  
+![](img/rozw_pasek.png)  
 Pod strona z filmami wybranego użytkownika:  
-![](img/zmiana.PNG)  
+![](img/zmiana.png)  
 Edytowanie opisu i tytułu filmu:  
-![](img/edytowanie_opisu.PNG)  
+![](img/edytowanie_opisu.png)  
 Dodawanie komentarzy:  
-![](img/komentarze.PNG)  
+![](img/komentarze.png)  
 
 # Raport IV  
 
