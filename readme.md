@@ -51,3 +51,6 @@ Edytowanie opisu i tytułu filmu:
 Dodawanie komentarzy:  
 ![](img/komentarze.PNG)  
 
+# Raport IV  
+
+Skończyłem tworzyć wygląd całej strony. Zrobiłem kilka małych poprawek błędów odkryty w czasie testowania strony.
