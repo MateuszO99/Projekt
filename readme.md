@@ -9,8 +9,3 @@ Technologię użyte do projektu: Django, PostgreSQL, HTML, CSS, Bootstrap
 
 Do tej pory utworzyłem baza danych projektu w PostgreSQL. Stworzyłem główną stronę serwisu, na której wyświetla się lista wszystkich filmów dodanych na stronie filmów (na razie można dodawać filmy tylko przez panel administracyjny). Każdy film ma swoją podstronę, na której jest więcej szczegółów.  
 Do następnego raportu planuję dodać możliwość rejestracji, logowania, edytowania profilu, dodawania przez zalogowanego użytkownika filmów oraz ich usuwanie.  
-
-Strona główna:  
-![](img/img1.PNG)  
-Podstrona filmu:  
-![](img/img2.PNG)  
