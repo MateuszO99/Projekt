@@ -11,7 +11,7 @@ Do tej pory utworzyłem baza danych projektu w PostgreSQL. Stworzyłem główną
 Do następnego raportu planuję dodać możliwość rejestracji, logowania, edytowania profilu, dodawania przez zalogowanego użytkownika filmów oraz ich usuwanie.  
 
 Strona główna:  
-![](img/img1.PNG)  
+![](img/img.PNG)  
 Podstrona filmu:  
 ![](img/img2.PNG)  
 
