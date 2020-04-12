@@ -3,7 +3,7 @@
 {% block content %}
     <div class="text-center">
         <video width='1080' class="video" controls>
-            <source src='../../media/{{ object.video }}' type='video/mp4'>
+            <source src='{{ object.video.url }}' type='video/mp4'>
             Twoja przeglądarka nie pozwala uruchomić tego filmu.
         </video>
     </div>
