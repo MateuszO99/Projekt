@@ -1,0 +1,49 @@
+{% extends 'video/base.html' %}
+{% block content %}
+    {% if favourites %}
+        <div class="row">
+            <div class="col-md-6">
+                {% for favourite in favourites %}
+                    <div class="post" id="{{ favourite.pk }}" style="display: none">
+                        <div class="mb-4">
+                            <div class="img-l">
+                                <a href="{% url 'video:detail' favourite.id %}">
+                                    <img src="{{ favourite.thumbnail.url }}" alt="miniaturka" width="100%">
+                                </a>
+                            </div>
+                            <div class="text-l mt-3">
+                                <h2 class="title">{{ favourite.title }}</h2>
+                                <p class="mb-0">Autor: <a href="{% url 'video:user-list' favourite.author.username %}">{{ favourite.author }}</a></p>
+                                <p>Data publikacji: {{ favourite.created|date:'d b Y' }}</p>
+                                <p>{{ favourite.description }}</p>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {% for favourite in favourites %}
+                    <div class="mb-4" onclick="change_display({{ favourite.pk }})"
+                         onmouseover="enable_brightness({{ favourite.pk }})" onmouseout="disable_brightness({{ favourite.pk }})"
+                         id="p{{ favourite.pk }}">
+                        <div class="img-r">
+                            <img src="{{ favourite.thumbnail.url }}" alt="miniaturka" width="100%" id="t{{ favourite.pk }}">
+                        </div>
+                        <div class="text-r">
+                            <h2 class="title">{{ favourite.title }}</h2>
+                            <p class="mb-0">Autor: {{ favourite.author }}</p>
+                            <p>Data publikacji: {{ favourite.created|date:'d b Y' }}</p>
+                            <p>{{ favourite.description|truncatechars:'300' }}</p>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+        <p>Nie ma jeszcze żadnych fimów na stronie</p>
+    {% endif %}
+
+{% endblock %}

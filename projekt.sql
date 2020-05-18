@@ -445,11 +445,82 @@ CREATE TABLE public.video_video (
     video character varying(100) NOT NULL,
     created timestamp with time zone NOT NULL,
     description text NOT NULL,
-    author_id integer NOT NULL
+    author_id integer NOT NULL,
+    thumbnail character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.video_video OWNER TO postgres;
+
+--
+-- Name: video_video_dislikes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_video_dislikes (
+    id integer NOT NULL,
+    video_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.video_video_dislikes OWNER TO postgres;
+
+--
+-- Name: video_video_dislikes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_video_dislikes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_video_dislikes_id_seq OWNER TO postgres;
+
+--
+-- Name: video_video_dislikes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_video_dislikes_id_seq OWNED BY public.video_video_dislikes.id;
+
+
+--
+-- Name: video_video_favourite; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_video_favourite (
+    id integer NOT NULL,
+    video_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.video_video_favourite OWNER TO postgres;
+
+--
+-- Name: video_video_favourite_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_video_favourite_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_video_favourite_id_seq OWNER TO postgres;
+
+--
+-- Name: video_video_favourite_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_video_favourite_id_seq OWNED BY public.video_video_favourite.id;
+
 
 --
 -- Name: video_video_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -471,6 +542,76 @@ ALTER TABLE public.video_video_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.video_video_id_seq OWNED BY public.video_video.id;
+
+
+--
+-- Name: video_video_likes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_video_likes (
+    id integer NOT NULL,
+    video_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.video_video_likes OWNER TO postgres;
+
+--
+-- Name: video_video_likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_video_likes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_video_likes_id_seq OWNER TO postgres;
+
+--
+-- Name: video_video_likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_video_likes_id_seq OWNED BY public.video_video_likes.id;
+
+
+--
+-- Name: video_video_to_watch; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_video_to_watch (
+    id integer NOT NULL,
+    video_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.video_video_to_watch OWNER TO postgres;
+
+--
+-- Name: video_video_to_watch_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_video_to_watch_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_video_to_watch_id_seq OWNER TO postgres;
+
+--
+-- Name: video_video_to_watch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_video_to_watch_id_seq OWNED BY public.video_video_to_watch.id;
 
 
 --
@@ -555,6 +696,34 @@ ALTER TABLE ONLY public.video_comment ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.video_video ALTER COLUMN id SET DEFAULT nextval('public.video_video_id_seq'::regclass);
+
+
+--
+-- Name: video_video_dislikes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_dislikes ALTER COLUMN id SET DEFAULT nextval('public.video_video_dislikes_id_seq'::regclass);
+
+
+--
+-- Name: video_video_favourite id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_favourite ALTER COLUMN id SET DEFAULT nextval('public.video_video_favourite_id_seq'::regclass);
+
+
+--
+-- Name: video_video_likes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_likes ALTER COLUMN id SET DEFAULT nextval('public.video_video_likes_id_seq'::regclass);
+
+
+--
+-- Name: video_video_to_watch id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_to_watch ALTER COLUMN id SET DEFAULT nextval('public.video_video_to_watch_id_seq'::regclass);
 
 
 --
@@ -718,11 +887,75 @@ ALTER TABLE ONLY public.video_comment
 
 
 --
+-- Name: video_video_dislikes video_video_dislikes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_dislikes
+    ADD CONSTRAINT video_video_dislikes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_video_dislikes video_video_dislikes_video_id_user_id_09d82cdc_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_dislikes
+    ADD CONSTRAINT video_video_dislikes_video_id_user_id_09d82cdc_uniq UNIQUE (video_id, user_id);
+
+
+--
+-- Name: video_video_favourite video_video_favourite_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_favourite
+    ADD CONSTRAINT video_video_favourite_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_video_favourite video_video_favourite_video_id_user_id_358b6ff0_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_favourite
+    ADD CONSTRAINT video_video_favourite_video_id_user_id_358b6ff0_uniq UNIQUE (video_id, user_id);
+
+
+--
+-- Name: video_video_likes video_video_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_likes
+    ADD CONSTRAINT video_video_likes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_video_likes video_video_likes_video_id_user_id_5a0cff5e_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_likes
+    ADD CONSTRAINT video_video_likes_video_id_user_id_5a0cff5e_uniq UNIQUE (video_id, user_id);
+
+
+--
 -- Name: video_video video_video_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.video_video
     ADD CONSTRAINT video_video_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_video_to_watch video_video_to_watch_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_to_watch
+    ADD CONSTRAINT video_video_to_watch_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_video_to_watch video_video_to_watch_video_id_user_id_d616deba_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_to_watch
+    ADD CONSTRAINT video_video_to_watch_video_id_user_id_d616deba_uniq UNIQUE (video_id, user_id);
 
 
 --
@@ -838,6 +1071,62 @@ CREATE INDEX video_video_author_id_7e3e31cd ON public.video_video USING btree (a
 
 
 --
+-- Name: video_video_dislikes_user_id_1734c611; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_dislikes_user_id_1734c611 ON public.video_video_dislikes USING btree (user_id);
+
+
+--
+-- Name: video_video_dislikes_video_id_ff3e3bf4; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_dislikes_video_id_ff3e3bf4 ON public.video_video_dislikes USING btree (video_id);
+
+
+--
+-- Name: video_video_favourite_user_id_bf00e06c; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_favourite_user_id_bf00e06c ON public.video_video_favourite USING btree (user_id);
+
+
+--
+-- Name: video_video_favourite_video_id_a19e9f04; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_favourite_video_id_a19e9f04 ON public.video_video_favourite USING btree (video_id);
+
+
+--
+-- Name: video_video_likes_user_id_97ee0490; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_likes_user_id_97ee0490 ON public.video_video_likes USING btree (user_id);
+
+
+--
+-- Name: video_video_likes_video_id_7749293d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_likes_video_id_7749293d ON public.video_video_likes USING btree (video_id);
+
+
+--
+-- Name: video_video_to_watch_user_id_42a2388a; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_to_watch_user_id_42a2388a ON public.video_video_to_watch USING btree (user_id);
+
+
+--
+-- Name: video_video_to_watch_video_id_b36b8c8f; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX video_video_to_watch_video_id_b36b8c8f ON public.video_video_to_watch USING btree (video_id);
+
+
+--
 -- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -939,6 +1228,70 @@ ALTER TABLE ONLY public.video_comment
 
 ALTER TABLE ONLY public.video_video
     ADD CONSTRAINT video_video_author_id_7e3e31cd_fk_auth_user_id FOREIGN KEY (author_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_dislikes video_video_dislikes_user_id_1734c611_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_dislikes
+    ADD CONSTRAINT video_video_dislikes_user_id_1734c611_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_dislikes video_video_dislikes_video_id_ff3e3bf4_fk_video_video_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_dislikes
+    ADD CONSTRAINT video_video_dislikes_video_id_ff3e3bf4_fk_video_video_id FOREIGN KEY (video_id) REFERENCES public.video_video(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_favourite video_video_favourite_user_id_bf00e06c_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_favourite
+    ADD CONSTRAINT video_video_favourite_user_id_bf00e06c_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_favourite video_video_favourite_video_id_a19e9f04_fk_video_video_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_favourite
+    ADD CONSTRAINT video_video_favourite_video_id_a19e9f04_fk_video_video_id FOREIGN KEY (video_id) REFERENCES public.video_video(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_likes video_video_likes_user_id_97ee0490_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_likes
+    ADD CONSTRAINT video_video_likes_user_id_97ee0490_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_likes video_video_likes_video_id_7749293d_fk_video_video_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_likes
+    ADD CONSTRAINT video_video_likes_video_id_7749293d_fk_video_video_id FOREIGN KEY (video_id) REFERENCES public.video_video(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_to_watch video_video_to_watch_user_id_42a2388a_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_to_watch
+    ADD CONSTRAINT video_video_to_watch_user_id_42a2388a_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: video_video_to_watch video_video_to_watch_video_id_b36b8c8f_fk_video_video_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_video_to_watch
+    ADD CONSTRAINT video_video_to_watch_video_id_b36b8c8f_fk_video_video_id FOREIGN KEY (video_id) REFERENCES public.video_video(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

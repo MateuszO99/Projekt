@@ -4,9 +4,9 @@
 {% block content %}
     <div class="row">
         <div class="col-md-6 col-lg-4">
-            <img src="{{ user.profile.profileImage.url }}" alt="Zdjęcie porfilowe" class="img-thumbnail mx-auto d-block">
+            <img src="{{ user.profile.profileImage.url }}" alt="Zdjęcie porfilowe" class="img-thumbnail mx-auto d-block float-right">
         </div>
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-5 col-lg-4">
             <h1>{{ user.username }}</h1>
             <p>{{ user.email }}</p>
             <a href="{% url 'users:change_password' %}" class="btn btn-primary">Zmień hasło</a>

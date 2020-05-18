@@ -1,0 +1,49 @@
+{% extends 'video/base.html' %}
+{% block content %}
+    {% if to_watch %}
+        <div class="row">
+            <div class="col-md-6">
+                {% for watch in to_watch %}
+                    <div class="post" id="{{ watch.pk }}" style="display: none">
+                        <div class="mb-4">
+                            <div class="img-l">
+                                <a href="{% url 'video:detail' watch.id %}">
+                                    <img src="{{ watch.thumbnail.url }}" alt="miniaturka" width="100%">
+                                </a>
+                            </div>
+                            <div class="text-l mt-3">
+                                <h2 class="title">{{ watch.title }}</h2>
+                                <p class="mb-0">Autor: <a href="{% url 'video:user-list' watch.author.username %}">{{ watch.author }}</a></p>
+                                <p>Data publikacji: {{ watch.created|date:'d b Y' }}</p>
+                                <p>{{ watch.description }}</p>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {% for watch in to_watch %}
+                    <div class="mb-4" onclick="change_display({{ watch.pk }})"
+                         onmouseover="enable_brightness({{ watch.pk }})" onmouseout="disable_brightness({{ watch.pk }})"
+                         id="p{{ watch.pk }}">
+                        <div class="img-r">
+                            <img src="{{ watch.thumbnail.url }}" alt="miniaturka" width="100%" id="t{{ watch.pk }}">
+                        </div>
+                        <div class="text-r">
+                            <h2 class="title">{{ watch.title }}</h2>
+                            <p class="mb-0">Autor: {{ watch.author }}</p>
+                            <p>Data publikacji: {{ watch.created|date:'d b Y' }}</p>
+                            <p>{{ watch.description|truncatechars:'300' }}</p>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+        <p>Nie ma jeszcze żadnych fimów na stronie</p>
+    {% endif %}
+
+{% endblock %}

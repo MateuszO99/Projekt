@@ -1,19 +1,46 @@
 {% extends 'video/base.html' %}
 {% block content %}
     {% if videos %}
-        <h1>Filmy wstawione przez: {{ view.kwargs.username }}</h1>
-        {% for video in videos %}
-            <div class="post">
-                <h2><a href="{% url 'video:detail' video.id %}">{{ video.title }}</a></h2>
-                <p>
-                    Data publikacji: {{ video.created }}
-                </p>
-                <hr class="light">
+        <div class="row">
+            <div class="col-md-6">
+                {% for video in videos %}
+                    <div class="post" id="{{ video.pk }}" style="display: none">
+                        <div class="mb-4">
+                            <div class="img-l">
+                                <a href="{% url 'video:detail' video.id %}">
+                                    <img src="{{ video.thumbnail.url }}" alt="miniaturka" width="100%">
+                                </a>
+                            </div>
+                            <div class="text-l mt-3">
+                                <h2 class="title">{{ video.title }}</h2>
+                                <p class="mb-0">Autor: <a href="{% url 'video:user-list' video.author.username %}">{{ video.author }}</a></p>
+                                <p>Data publikacji: {{ video.created|date:'d b Y' }}</p>
+                                <p>{{ video.description }}</p>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-
-        {% include 'video/pagination.html' with page=page_obj %}
-
+            <div class="col-md-6">
+                {% for video in videos %}
+                    <div class="mb-4" onclick="change_display({{ video.pk }})"
+                         onmouseover="enable_brightness({{ video.pk }})" onmouseout="disable_brightness({{ video.pk }})"
+                         id="p{{ video.pk }}">
+                        <div class="img-r">
+                            <img src="{{ video.thumbnail.url }}" alt="miniaturka" width="100%" id="t{{ video.pk }}">
+                        </div>
+                        <div class="text-r">
+                            <h2 class="title">{{ video.title }}</h2>
+                            <p class="mb-0">Autor: {{ video.author }}</p>
+                            <p>Data publikacji: {{ video.created|date:'d b Y' }}</p>
+                            <p>{{ video.description|truncatechars:'300' }}</p>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     {% else %}
         <h1>Użytkownik {{ view.kwargs.username }} nie wstawił jeszcze żadnych filmów</h1>
     {% endif %}

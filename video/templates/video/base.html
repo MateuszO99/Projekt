@@ -10,27 +10,30 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fontello.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap&subset=latin-ext" rel="stylesheet">
 
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<body onload="display()">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background: #eee">
         <div class="container-fluid">
-            <div id="mainLogo">VideoWeb</div>
+            <div id="mainLogo">Video<span style="color: #e21616;">Web</span></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#rightNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="rightNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="{% url 'video:main_list' %}">Strona główna</a></li>
+                    <li class="nav-item"><a href="{% url 'video:main_list' %}" style="color: #e21616;">Strona główna</a></li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a href="{% url 'video:create' %}">Dodaj nowy film</a></li>
-                        <li class="nav-item"><a href="{% url 'users:profile' %}">Mój profil</a></li>
-                        <li class="nav-item"><a href="{% url 'users:logout' %}">Wyloguj się</a></li>
+                        <li class="nav-item"><a href="{% url 'video:create' %}" style="color: #e21616;">Dodaj nowy film</a></li>
+                        <li class="nav-item"><a href="{% url 'users:profile' %}" style="color: #e21616;">Mój profil</a></li>
+                        <li class="nav-item"><a href="{% url 'video:favourite_list' %}" style="color: #e21616;">Ulubione</a></li>
+                        <li class="nav-item"><a href="{% url 'video:watch_list' %}" style="color: #e21616;">Do obejrzenia</a></li>
+                        <li class="nav-item"><a href="{% url 'users:logout' %}" style="color: #e21616;">Wyloguj się</a></li>
                     {% else %}
-                        <li class="nav-item"><a href="{% url 'users:register' %}">Rejestracja</a></li>
-                        <li class="nav-item"><a href="{% url 'users:login' %}">Logowanie</a></li>
+                        <li class="nav-item"><a href="{% url 'users:register' %}" style="color: #e21616;">Rejestracja</a></li>
+                        <li class="nav-item"><a href="{% url 'users:login' %}" style="color: #e21616;">Logowanie</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -43,10 +46,12 @@
         {% endfor %}
     {% endif %}
 
-    <div class="container">
+    <div class="container-fluid main">
         {% block content %}
         {% endblock %}
     </div>
+
+<script src="{% static 'js/display.js' %}"></script>
 
 </body>
 </html>

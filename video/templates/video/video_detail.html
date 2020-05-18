@@ -2,33 +2,86 @@
 {% block title %} - {{ object.title }}{% endblock %}
 {% block content %}
     <div class="text-center">
-        <video width='1080' class="video" controls>
-            <source src='{{ object.video.url }}' type='video/mp4'>
+        <video class="video" controls>
+            <source src='../../media/{{ object.video }}' type='video/mp4'>
             Twoja przeglądarka nie pozwala uruchomić tego filmu.
         </video>
     </div>
 
-    <div class="pl-3">
+    <div class="detail-container">
         <h1 class="pt-2">{{ object.title }}</h1>
-        <p>
-            <span class="font-weight-bold">Autor:</span>
-            <a href="{% url 'video:user-list' object.author.username %}">{{ object.author }}</a>
-        </p>
-        <p><span class="font-weight-bold">Data publikacji:</span> {{ object.created|date:'d b Y' }}</p>
-        <p><span class="font-weight-bold">Godzina wstawienia:</span> {{ object.created|date:'H:i' }}</p>
-        <p class="text-justify"><span class="font-weight-bold">Opis:</span> {{ object.description }}</p>
+
+        <div class="row">
+            <p class="col-xl-8 col-md-4 col-sm-12">
+                <span class="font-weight-bold">Autor:</span>
+                <a href="{% url 'video:user-list' object.author.username %}">{{ object.author }}</a><br>
+                <span class="font-weight-bold">Data publikacji:</span> {{ object.created|date:'d b Y' }}<br>
+                <span class="font-weight-bold">Godzina wstawienia:</span> {{ object.created|date:'H:i' }}
+            </p>
+
+            <div class="col-xl-4 col-md-8 col-sm-12" style="padding-left: 4%;">
+                <div class="likes">
+                    <form action="{% url 'video:like_video' %}" method="post">
+                        {% csrf_token %}
+                        {% if like %}
+                            <button type="submit" value="{{ object.pk }}" name="video_pk" class="btn btn-link btn-like">
+                                <i class="icon-thumbs-up"></i></button>
+                        {% else %}
+                            <button type="submit" value="{{ object.pk }}" name="video_pk" class="btn btn-link btn-like"
+                                    style="color: black"><i class="icon-thumbs-up"></i></button>
+                        {% endif %}
+                        {{ total_likes }}
+                    </form>
+                </div>
+
+                <div class="likes">
+                    <form action="{% url 'video:dislike_video' %}" method="post">
+                        {% csrf_token %}
+                        {% if dislike %}
+                            <button type="submit" value="{{ object.pk }}" name="video_pk" class="btn btn-link btn-like">
+                                <span style="color: red"><i class="icon-thumbs-down"></i></span></button>
+                        {% else %}
+                            <button type="submit" value="{{ object.pk }}" name="video_pk" class="btn btn-link btn-like" style="color: black">
+                                <i class="icon-thumbs-down"></i></button>
+                        {% endif %}
+                        {{ total_dislikes }}
+                    </form>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <div style="float: left; margin-top: 8px; margin-right: 5px">
+                        {% if favourite %}
+                            <a href="{% url 'video:favourite' object.id %}"><i class="icon-heart"></i></a>
+                        {% else %}
+                            <a href="{% url 'video:favourite' object.id %}"><i class="icon-heart-empty"></i></a>
+                        {% endif %}
+                    </div>
+
+                    <div style="float: left; margin-top: 7px;">
+                        {% if to_watch %}
+                            <a href="{% url 'video:to_watch' object.id %}">Usuń z Do obejrzenia</a>
+                        {% else %}
+                            <a href="{% url 'video:to_watch' object.id %}">Zapisz w Do obejrzenia</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <div style="clear: both"></div>
+            </div>
+        </div>
+
+        <p class="text-justify"><span class="font-weight-bold">Opis:</span><br> {{ object.description }}</p>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'video:comments' object.id %}" class="btn btn-primary mb-4">Komentarze</a>
+        {% else %}
+            <a href="{% url 'users:login' %}">Zaloguj się, żeby przeglądać komentarze</a>
+        {% endif %}
 
         {% if object.author.id == request.user.id %}
             <p>
                 <a href="{% url 'video:update' object.id %}" class="btn btn-primary">Edytuj</a>
                 <a href="{% url 'video:delete' object.id %}" class="btn btn-danger">Usuń</a>
             </p>
-        {% endif %}
-
-        {% if user.is_authenticated %}
-            <a href="{% url 'video:comments' object.id %}" class="btn btn-primary mb-4">Komentarze</a>
-        {% else %}
-            <a href="{% url 'users:login' %}">Zaloguj się, żeby przeglądać komentarze</a>
         {% endif %}
     </div>
 

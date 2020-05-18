@@ -3,23 +3,25 @@
 {% block title %} - Komentarze{% endblock %}
 {% block content %}
 
-    <h1>Komentarze</h1>
+    <div class="form-d">
+        <h1>Komentarze</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary mb-4">Skomentuj</button>
-        <a href="{% url 'video:detail' video.id %}" class="btn btn-primary mb-4">Anuluj</a>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary mb-4">Skomentuj</button>
+            <a href="{% url 'video:detail' video.id %}" class="btn btn-primary mb-4">Anuluj</a>
+        </form>
 
-    {% if comments %}
-        {% for comment in comments %}
-            <p class="font-weight-bold">{{ comment.username }}</p>
-            <p class="text-justify">{{ comment.content }}</p>
-            <p>Data dodania: {{ comment.created }}</p>
-        {% endfor %}
-    {% else %}
-        <p>Brak komentarzy</p>
-    {% endif %}
+        {% if comments %}
+            {% for comment in comments %}
+                <p class="font-weight-bold">{{ comment.username }}</p>
+                <p class="text-justify">{{ comment.content }}</p>
+                <p>Data dodania: {{ comment.created }}</p>
+            {% endfor %}
+        {% else %}
+            <p>Brak komentarzy</p>
+        {% endif %}
+    </div>
 
 {% endblock %}
