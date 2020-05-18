@@ -53,4 +53,8 @@ Dodawanie komentarzy:
 
 # Raport IV  
 
-Skończyłem tworzyć wygląd całej strony. Zrobiłem kilka małych poprawek błędów odkryty w czasie testowania strony.
+Skończyłem tworzyć wygląd całej strony. Zrobiłem kilka małych poprawek błędów odkryty w czasie testowania strony.  
+
+# Wersja poprawiona  
+
+Dodałem system oceniania, możliowść dodawania filmów do ulubionych oraz do listy do obejrzenia. Poprawiłem wygląd strony.
